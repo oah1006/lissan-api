@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('staff', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('role_id')->nullable()->constrained();
+            $table->string('code')->unique();
+            $table->string('full_name');
+            $table->string('phone_number')->unique();
+            $table->foreignId('role_id')->nullable()->constrained()->nullOnDelete();
             $table->timestamps();
         });
     }
