@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('password');
             $table->enum('gender', [0, 1, 2])->default(0)->index();
             $table->boolean('is_active')->default(true);
+            $table->nullableMorphs('profile');
             $table->timestamps();
         });
     }
