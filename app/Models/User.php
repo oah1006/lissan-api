@@ -49,9 +49,9 @@ class User extends Authenticatable
         return $this->morphTo();
     }
 
-    protected static function booted() {
-        static::creating(function (User $user) {
-           $user->password = bcrypt($user->password);
-        });
-    }
+//    protected static function booted() {
+//        static::creating(function (User $user) {
+//           $user->password = bcrypt($user->password);
+//        });
+//    }
 }

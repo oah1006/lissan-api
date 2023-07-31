@@ -15,8 +15,6 @@ class LoginController extends Controller
 
         $user = User::where('email', $credential['email'])->first();
 
-        dump(Hash::check($credential['password'], $user->password));
-
         if ($user && Hash::check($credential['password'], $user->password) && $user->profile_type == 'staff') {
             $token = $user->createToken('api-token');
 
