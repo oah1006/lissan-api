@@ -15,7 +15,8 @@ class Password implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if (!trim(Str::of($value)->match('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$'))) {
+        $pattern = '/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/';
+        if (!preg_match($pattern, $value)) {
             $fail('Password không đúng định dạng');
         }
     }
