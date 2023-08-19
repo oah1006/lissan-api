@@ -25,6 +25,6 @@ Route::prefix('private')->name('private.')->group(function() {
    });
 
    Route::middleware(['auth:sanctum'])->group(function() {
-      Route::apiResource('staff', StaffController::class)->middleware([HandlePrecognitiveRequests::class]);
+      Route::apiResource('staff', StaffController::class)->middleware([HandlePrecognitiveRequests::class]);;
    });
 });
