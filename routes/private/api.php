@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\RegisterController;
+use App\Http\Controllers\Admin\Staff\StaffController;
+use Illuminate\Foundation\Http\Middleware\HandlePrecognitiveRequests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,7 +21,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('private')->name('private.')->group(function() {
    Route::prefix('auth')->name('auth.')->group(function() {
-       Route::post('/register', [RegisterController::class, 'register'])->name('register');
        Route::post('/login', [LoginController::class, 'login'])->name('login');
+   });
+
+   Route::middleware(['auth:sanctum'])->group(function() {
+      Route::apiResource('staff', StaffController::class)->middleware([HandlePrecognitiveRequests::class]);
    });
 });
