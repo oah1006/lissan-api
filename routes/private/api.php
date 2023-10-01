@@ -24,7 +24,10 @@ Route::prefix('private')->name('private.')->group(function() {
        Route::post('/login', [LoginController::class, 'login'])->name('login');
    });
 
+   Route::apiResource('staff', StaffController::class)->middleware([HandlePrecognitiveRequests::class]);;
+
+
    Route::middleware(['auth:sanctum'])->group(function() {
-      Route::apiResource('staff', StaffController::class)->middleware([HandlePrecognitiveRequests::class]);;
+
    });
 });
